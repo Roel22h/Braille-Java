@@ -16,33 +16,47 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Form extends javax.swing.JFrame {
 
-    private Arduino arduino;
+    private final Arduino arduino;
 
-    private String vowelsExercise = "aeiou";
-    private String numbresExercise = "1234567890";
-    private String letersExercise = "bcdfghjklmnpqrstvwxyz";
-    private String alphabetExercise = "abcdefghijklmnpoqrstuvwxyz";
-    private String customExercise = "";
+    private final String vowelsExercise = "aeiou";
+    private final String numbresExercise = "1234567890";
+    private final String letersExercise = "bcdfghjklmnpqrstvwxyz";
+    private final String alphabetExercise = "abcdefghijklmnpoqrstuvwxyz";
 
     private ButtonGroup rbGroup;
 
     public Form() {
         initComponents();
-        arduino = new Arduino();
-        loadPortsList();
-        setRadioButtonGroup();
+        this.arduino = new Arduino();
     }
 
-    private void loadPortsList() {
-        this.cbPorts.removeAllItems();
+    public void loadPortsList() {
         SerialPort[] ports = Arduino.getSerialPorts();
+        boolean conectedStatus = false;
 
         for (int i = 0; i < ports.length; i++) {
-            this.cbPorts.addItem(ports[i].getSystemPortName());
+            if (this.arduino.connect(i)) {
+                conectedStatus = true;
+                break;
+            }
+        }
+
+        if (conectedStatus) {
+            lbConnectionStatus.setText("CONECTADO");
+            lbConnectionStatus.setForeground(Color.BLUE);
+            intListener();
+            enableForm(true);
+        } else {
+            lbConnectionStatus.setText("DESCONECTADO");
+            lbConnectionStatus.setForeground(Color.red);
+
+            JOptionPane.showMessageDialog(this, "Error al intentar conectarse con el módulo Arduino.");
+
+            enableForm(false);
         }
     }
 
-    private void setRadioButtonGroup() {
+    public void setRadioButtonGroup() {
         ButtonGroup group = new ButtonGroup();
         rbGroup = group;
 
@@ -54,60 +68,60 @@ public class Form extends javax.swing.JFrame {
     }
 
     public void intListener() {
-        if ((arduino.isConnected())) {
-            SerialPort serialPort = arduino.getSerialPort();
+        if ((this.arduino.isConnected())) {
+            SerialPort serialPort = this.arduino.getSerialPort();
 
-            Thread serialThread = new Thread(() -> {
-                while (!Thread.interrupted()) {
-                    // Esperar a que haya datos disponibles
-                    while (serialPort.bytesAvailable() == 0) {
-                        try {
-                            Thread.sleep(20);
-                        } catch (InterruptedException e) {
-                            // Manejar interrupciones del hilo
-                            Thread.currentThread().interrupt();
-                            return;
-                        }
-                    }
-
-                    // Leer datos disponibles
-                    byte[] buffer = new byte[serialPort.bytesAvailable()];
-                    int bytesRead = serialPort.readBytes(buffer, buffer.length);
-
-                    // Procesar los datos recibidos
-                    if (bytesRead > 0) {
-
-                        String receivedData = new String(buffer, 0, bytesRead);
-
-                        switch (receivedData) {
-                            case "1":
-                            case "0":
-                                arduino.setAnswer(receivedData);
-                                break;
-
-                            case "N":
-                                if (arduino.testIsFinished()) {
-                                    arduino.setScore();
-                                    setResultTest();
-
-                                    arduino.optionRepearTest();
-                                } else {
-                                    arduino.sendText();
+            Thread serialThread;
+            serialThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!Thread.interrupted()) {
+                        // Esperar a que haya datos disponibles
+                        while (serialPort.bytesAvailable() == 0) {
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e) {
+                                // Manejar interrupciones del hilo
+                                Thread.currentThread().interrupt();
+                                return;
+                            }
+                        }   // Leer datos disponibles
+                        byte[] buffer = new byte[serialPort.bytesAvailable()];
+                        int bytesRead = serialPort.readBytes(buffer, buffer.length);
+                        // Procesar los datos recibidos
+                        if (bytesRead > 0) {
+                            String receivedData;
+                            receivedData = new String(buffer, 0, bytesRead);
+                            switch (receivedData) {
+                                case "1", "0" -> Form.this.arduino.setAnswer(receivedData);
+                                case "N" -> {
+                                    if (Form.this.arduino.testIsFinished()) {
+                                        Form.this.arduino.setScore();
+                                        setResultTest();
+                                        Form.this.arduino.optionRepearTest();
+                                    } else {
+                                        Form.this.arduino.sendText();
+                                    }
                                 }
-                                break;
-                            case "A":
-                                arduino.clearLists();
-                                arduino.playAnswStatusAudio("again");
-                                startTest();
-                                break;
-                            case "F":
-                                enableForm(true);
-                                arduino.clearLists();
-                                arduino.playAnswStatusAudio("end");
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(this, "Respuesta de Arduino no identificada.");
-                                throw new AssertionError();
+                                case "A" -> {
+                                    Form.this.arduino.clearLists();
+                                    Form.this.arduino.playAnswStatusAudio("again");
+                                    startTest();
+                                }
+                                case "F" -> {
+                                    enableForm(true);
+                                    Form.this.arduino.clearLists();
+                                    Form.this.arduino.playAnswStatusAudio("end");
+                                }
+                                case "S" -> {
+                                    String charRepeat = Form.this.arduino.getCharacterText();
+                                    Form.this.arduino.playCharacterAudio(charRepeat);
+                                }
+                                default -> {
+                                    JOptionPane.showMessageDialog(Form.this, "Respuesta de Arduino no identificada.");
+                                    throw new AssertionError();
+                                }
+                            }
                         }
                     }
                 }
@@ -144,7 +158,7 @@ public class Form extends javax.swing.JFrame {
     }
 
     private void startTest() {
-        if (!(arduino.isConnected())) {
+        if (!(this.arduino.isConnected())) {
             return;
         }
 
@@ -163,43 +177,33 @@ public class Form extends javax.swing.JFrame {
         String rbText = selectedRadioButton.getText();
 
         switch (rbText) {
-            case "Vocales":
-                exerciseText = this.vowelsExercise;
-                break;
+            case "Vocales" -> exerciseText = this.vowelsExercise;
 
-            case "Números":
-                exerciseText = this.numbresExercise;
-                break;
+            case "Números" -> exerciseText = this.numbresExercise;
 
-            case "Letras":
-                exerciseText = this.letersExercise;
-                break;
+            case "Letras" -> exerciseText = this.letersExercise;
 
-            case "Alfabeto":
-                exerciseText = this.alphabetExercise;
-                break;
+            case "Alfabeto" -> exerciseText = this.alphabetExercise;
 
-            case "Personalizado":
+            case "Personalizado" -> {
                 exerciseText = (tfCustomText.getText()).toLowerCase();
-                customExercise = exerciseText;
-                break;
+            }
 
-            default:
-                JOptionPane.showMessageDialog(this, "Selecione un ejercicio.");
+            default -> JOptionPane.showMessageDialog(this, "Selecione un ejercicio.");
         }
 
-        arduino.initProperties(rbText, exerciseText, level);
-        arduino.sendText();
+        this.arduino.initProperties(rbText, exerciseText, level);
+        this.arduino.sendText();
     }
 
     public void setResultTest() {
-        int arraysLength = arduino.getArraysLength();
-        int score = arduino.getScore();
+        int arraysLength = this.arduino.getArraysLength();
+        int score = this.arduino.getScore();
 
-        ArrayList<String> listText = arduino.getListText();
-        ArrayList<String> listShuffleText = arduino.getListShuffleText();
-        ArrayList<Integer> listSolution = arduino.getListSolution();
-        ArrayList<Integer> listAnswers = arduino.getListAnswers();
+        ArrayList<String> listText = this.arduino.getListText();
+        ArrayList<String> listShuffleText = this.arduino.getListShuffleText();
+        ArrayList<Integer> listSolution = this.arduino.getListSolution();
+        ArrayList<Integer> listAnswers = this.arduino.getListAnswers();
 
         DefaultTableModel jTable = (DefaultTableModel) jtResponse.getModel();
         jTable.setRowCount(0);
@@ -209,7 +213,7 @@ public class Form extends javax.swing.JFrame {
         }
 
         lbScore.setText(score + "/" + arraysLength);
-        arduino.playScoreAudio(score, arraysLength);
+        this.arduino.playScoreAudio(score, arraysLength);
     }
 
     /**
@@ -224,12 +228,7 @@ public class Form extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lbTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        lbPorts = new javax.swing.JLabel();
-        cbPorts = new javax.swing.JComboBox<>();
-        lbConnectedStatusTitle = new javax.swing.JLabel();
         lbConnectionStatus = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        btnConnect = new javax.swing.JButton();
         lbExercises = new javax.swing.JLabel();
         lbParameters = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -254,21 +253,10 @@ public class Form extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbTitle.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lbTitle.setText("Alfabeto Braille");
-
-        lbPorts.setText("Puertos");
-
-        lbConnectedStatusTitle.setText("Estado:");
+        lbTitle.setText("JUGANDO CON EL ALFABETO BRAILLE");
 
         lbConnectionStatus.setForeground(new java.awt.Color(204, 0, 0));
         lbConnectionStatus.setText("DESCONECTADO");
-
-        btnConnect.setText("Conectar");
-        btnConnect.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnConnectMouseClicked(evt);
-            }
-        });
 
         lbExercises.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lbExercises.setText("Ejercicios");
@@ -299,6 +287,7 @@ public class Form extends javax.swing.JFrame {
             }
         });
 
+        tfCustomText.setText("a,e,i,o,u");
         tfCustomText.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -368,7 +357,7 @@ public class Form extends javax.swing.JFrame {
                         .addComponent(tfStudent)
                         .addComponent(cbRandomLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(lbStudent))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnStart)
@@ -387,7 +376,7 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(tfStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnStart)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         lbResultTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -424,42 +413,33 @@ public class Form extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbConnectionStatus))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lbPorts)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbPorts, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnConnect)
-                                        .addGap(46, 46, 46)
-                                        .addComponent(lbConnectedStatusTitle)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lbConnectionStatus)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lbExercises)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbParameters)
-                                        .addGap(152, 152, 152))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(130, 130, 130)
                                         .addComponent(lbResultTitle)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lbScore))
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(lbTitle)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(144, 144, 144)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(8, 8, 8))))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lbTitle)
+                .addGap(73, 73, 73))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbExercises)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbParameters)
+                .addGap(159, 159, 159))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,27 +450,19 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPorts)
-                    .addComponent(cbPorts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbConnectedStatusTitle)
-                    .addComponent(lbConnectionStatus)
-                    .addComponent(btnConnect))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbExercises)
                     .addComponent(lbParameters))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbResultTitle)
-                    .addComponent(lbScore))
+                    .addComponent(lbScore)
+                    .addComponent(lbConnectionStatus))
                 .addContainerGap())
         );
 
@@ -513,27 +485,10 @@ public class Form extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConnectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConnectMouseClicked
+    private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
 
-        int i = this.cbPorts.getSelectedIndex();
-
-        if (arduino.connect(i)) {
-            lbConnectionStatus.setText("CONECTADO");
-            lbConnectionStatus.setForeground(Color.BLUE);
-
-            JOptionPane.showMessageDialog(this, "Conectado");
-
-            intListener();
-            enableForm(true);
-        } else {
-            lbConnectionStatus.setText("DESCONECTADO");
-            lbConnectionStatus.setForeground(Color.red);
-
-            JOptionPane.showMessageDialog(this, "Error al intentar conectarse con el módulo Arduino.");
-
-            enableForm(false);
-        }
-    }//GEN-LAST:event_btnConnectMouseClicked
+        startTest();
+    }//GEN-LAST:event_btnStartMouseClicked
 
     private void rbCustomTextStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbCustomTextStateChanged
 
@@ -544,11 +499,6 @@ public class Form extends javax.swing.JFrame {
             tfCustomText.setText("");
         }
     }//GEN-LAST:event_rbCustomTextStateChanged
-
-    private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
-
-        startTest();
-    }//GEN-LAST:event_btnStartMouseClicked
 
     /**
      * @param args the command line arguments
@@ -578,17 +528,13 @@ public class Form extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Form().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConnect;
     private javax.swing.JToggleButton btnStart;
-    private javax.swing.JComboBox<String> cbPorts;
     private javax.swing.JComboBox<String> cbRandomLevel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -596,13 +542,10 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jtResponse;
-    private javax.swing.JLabel lbConnectedStatusTitle;
     private javax.swing.JLabel lbConnectionStatus;
     private javax.swing.JLabel lbExercises;
     private javax.swing.JLabel lbParameters;
-    private javax.swing.JLabel lbPorts;
     private javax.swing.JLabel lbRandomLevel;
     private javax.swing.JLabel lbResultTitle;
     private javax.swing.JLabel lbScore;

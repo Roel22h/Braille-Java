@@ -50,53 +50,43 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
                               <Component id="jSeparator1" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="lbPorts" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cbPorts" min="-2" pref="131" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnConnect" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                          <Component id="lbConnectedStatusTitle" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="lbConnectionStatus" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lbExercises" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lbParameters" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lbConnectionStatus" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                                           <Component id="lbResultTitle" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="lbScore" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jPanel3" max="32767" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
+                                          <Component id="jPanel3" max="32767" attributes="0"/>
+                                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-                          <Component id="lbTitle" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
                       <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="lbTitle" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lbExercises" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="lbParameters" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,30 +99,21 @@
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lbPorts" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbPorts" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbConnectedStatusTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbConnectionStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnConnect" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbExercises" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbParameters" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="113" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbResultTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbScore" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbConnectionStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -145,30 +126,10 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Alfabeto Braille"/>
+            <Property name="text" type="java.lang.String" value="JUGANDO CON EL ALFABETO BRAILLE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbPorts">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Puertos"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cbPorts">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbConnectedStatusTitle">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Estado:"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbConnectionStatus">
           <Properties>
@@ -177,16 +138,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DESCONECTADO"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JSeparator" name="jSeparator2">
-        </Component>
-        <Component class="javax.swing.JButton" name="btnConnect">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Conectar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnConnectMouseClicked"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbExercises">
           <Properties>
@@ -292,6 +243,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="tfCustomText">
               <Properties>
+                <Property name="text" type="java.lang.String" value="a,e,i,o,u"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
@@ -319,7 +271,7 @@
                           </Group>
                           <Component id="lbStudent" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="101" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -341,7 +293,7 @@
                       <Component id="tfStudent" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnStart" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

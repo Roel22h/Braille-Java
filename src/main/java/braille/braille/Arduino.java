@@ -25,10 +25,10 @@ public class Arduino {
     private String characterText;
     private String randomCharacterText;
 
-    private ArrayList<String> listText = new ArrayList<>();
-    private ArrayList<String> listShuffleText = new ArrayList<>();
-    private ArrayList<Integer> listSolution = new ArrayList<>();
-    private ArrayList<Integer> listAnswers = new ArrayList<>();
+    private final ArrayList<String> listText = new ArrayList<>();
+    private final ArrayList<String> listShuffleText = new ArrayList<>();
+    private final ArrayList<Integer> listSolution = new ArrayList<>();
+    private final ArrayList<Integer> listAnswers = new ArrayList<>();
 
     private int score = 0;
     private int arraysLength = 0;
@@ -37,6 +37,7 @@ public class Arduino {
 //  CONSTANS ANSWERS
     static final String FILE_NAME_ANNW_CORRECT = "correct";
     static final String FILE_NAME_ANNW_INCORRECT = "incorrect";
+    static final String FILE_NAME_END_OR_AGAIN = "end_or_again";
 
     static final String INPUT_CORRECT_VALUE = "1";
     static final String INPUT_INCORRECT_VALUE = "0";
@@ -45,6 +46,10 @@ public class Arduino {
     static final String INPUT_NEXT_VALUE = "N";
 
 //  GETTERS
+    public String getCharacterText() {
+        return this.characterText;
+    }
+    
     public SerialPort getSerialPort() {
         return this.serialPort;
     }
@@ -278,9 +283,9 @@ public class Arduino {
 
             case "Personalizado":
                 URL soundURL = null;
-                soundURL = getClass().getResource("src/audio/letters/" + fileName + ".wav");
+                soundURL = getClass().getResource("../../audio/letters/" + fileName + ".wav");
                 if (soundURL == null) {
-                    soundURL = getClass().getResource("src/audio/numbers/" + fileName + ".wav");
+                    soundURL = getClass().getResource("../../audio/numbers/" + fileName + ".wav");
                 }
 
                 return soundURL;
@@ -290,13 +295,13 @@ public class Arduino {
                 return null;
         }
 
-        return getClass().getResource("src/audio/" + exercisePath + "/" + fileName + ".wav");
+        return getClass().getResource("../../audio/" + exercisePath + "/" + fileName + ".wav");
     }
 
     // REPRODUCIOR SONIDO ESTADO RESPUESTA
     public void playAnswStatusAudio(String fileName) {
         try {
-            URL soundURL = getClass().getResource("src/audio/answers/" + fileName + ".wav");
+            URL soundURL = getClass().getResource("../../audio/answers/" + fileName + ".wav");
 
             if (soundURL != null) {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
@@ -330,14 +335,16 @@ public class Arduino {
             String scoreFileName = String.valueOf(score);
             String totalFileName = String.valueOf(total);
 
-            URL soundScoreURL = getClass().getResource("src/audio/results/score/" + scoreFileName + ".wav");
-            URL soundTotalURL = getClass().getResource("src/audio/results/total/" + totalFileName + ".wav");
+            URL soundScoreURL = getClass().getResource("../../audio/results/score/" + scoreFileName + ".wav");
+            URL soundTotalURL = getClass().getResource("../../audio/results/total/" + totalFileName + ".wav");
+            URL soundEndOrAgainURL = getClass().getResource("../../audio/answers/" + FILE_NAME_END_OR_AGAIN + ".wav");
 
-            if (soundScoreURL != null && soundTotalURL != null) {
+            if (soundScoreURL != null && soundTotalURL != null && soundEndOrAgainURL != null) {
                 AudioInputStream audioInputScoreStream = AudioSystem.getAudioInputStream(soundScoreURL);
                 AudioInputStream audioInputTotalStream = AudioSystem.getAudioInputStream(soundTotalURL);
+                AudioInputStream audioInputEndOrAgainStream = AudioSystem.getAudioInputStream(soundEndOrAgainURL);
 
-                if (audioInputScoreStream != null && audioInputTotalStream != null) {
+                if (audioInputScoreStream != null && audioInputTotalStream != null && audioInputEndOrAgainStream != null) {
 
                     try {
                         Clip clipScore = AudioSystem.getClip();
@@ -354,6 +361,22 @@ public class Arduino {
                                     Clip clipTotal = AudioSystem.getClip();
                                     clipTotal.open(audioInputTotalStream);
                                     clipTotal.start();
+
+                                    clipTotal.addLineListener(event2 -> {
+                                        if (event2.getType() == LineEvent.Type.STOP) {
+                                            try {
+                                                clipTotal.close();
+
+                                                Clip clipEndOrAgainTotal = AudioSystem.getClip();
+                                                clipEndOrAgainTotal.open(audioInputEndOrAgainStream);
+                                                clipEndOrAgainTotal.start();
+
+                                            } catch (IOException | LineUnavailableException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    });
+
                                 } catch (IOException | LineUnavailableException e) {
                                     e.printStackTrace();
                                 }

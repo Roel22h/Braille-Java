@@ -3,9 +3,6 @@
  */
 package braille.braille;
 
-import java.net.URL;
-import java.io.File;
-
 /**
  *
  * @author roel_
@@ -14,7 +11,8 @@ public class Braille {
 
     public static void main(String[] args) {
         Form form = new Form();
-        Arduino ard = new Arduino();
         form.setVisible(true);
+        form.loadPortsList();
+        form.setRadioButtonGroup();
     }
 }
