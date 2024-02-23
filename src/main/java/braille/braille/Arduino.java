@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-// SOUND
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -124,7 +123,7 @@ public class Arduino {
         return this.serialPort.closePort();
     }
 
-//    SETEO DE PROPIEDADES
+//  SET DE PROPIEDADES
     public void initProperties(String exercise, String character, int level) {
         System.out.println("Difultad: " + level);
         setExercise(exercise);
@@ -291,9 +290,9 @@ public class Arduino {
 
             case "Personalizado":
                 URL soundURL = null;
-                soundURL = getClass().getResource("../../audio/letters/" + fileName + ".wav");
+                soundURL = getClass().getResource("/audio/letters/" + fileName + ".wav");
                 if (soundURL == null) {
-                    soundURL = getClass().getResource("../../audio/numbers/" + fileName + ".wav");
+                    soundURL = getClass().getResource("/audio/numbers/" + fileName + ".wav");
                 }
 
                 return soundURL;
@@ -303,13 +302,14 @@ public class Arduino {
                 return null;
         }
 
-        return getClass().getResource("../../audio/" + exercisePath + "/" + fileName + ".wav");
+        String audioURL = "/audio/" + exercisePath + "/" + fileName + ".wav";
+        return getClass().getResource(audioURL);
     }
 
     // REPRODUCIOR SONIDO ESTADO RESPUESTA
     public void playAnswStatusAudio(String fileName) {
         try {
-            URL soundAswURL = getClass().getResource("../../audio/answers/" + fileName + ".wav");
+            URL soundAswURL = getClass().getResource("/audio/answers/" + fileName + ".wav");
             URL sountCharURL = searchCharacterSound(this.listText.get(this.index));
 
             if (soundAswURL != null && sountCharURL != null) {
@@ -356,9 +356,9 @@ public class Arduino {
             String scoreFileName = String.valueOf(score);
             String totalFileName = String.valueOf(total);
 
-            URL soundScoreURL = getClass().getResource("../../audio/results/score/" + scoreFileName + ".wav");
-            URL soundTotalURL = getClass().getResource("../../audio/results/total/" + totalFileName + ".wav");
-            URL soundEndOrAgainURL = getClass().getResource("../../audio/answers/" + FILE_NAME_END_OR_AGAIN + ".wav");
+            URL soundScoreURL = getClass().getResource("/audio/results/score/" + scoreFileName + ".wav");
+            URL soundTotalURL = getClass().getResource("/audio/results/total/" + totalFileName + ".wav");
+            URL soundEndOrAgainURL = getClass().getResource("/audio/answers/" + FILE_NAME_END_OR_AGAIN + ".wav");
 
             if (soundScoreURL != null && soundTotalURL != null && soundEndOrAgainURL != null) {
                 AudioInputStream audioInputScoreStream = AudioSystem.getAudioInputStream(soundScoreURL);
@@ -372,13 +372,11 @@ public class Arduino {
                         clipScore.open(audioInputScoreStream);
                         clipScore.start();
 
-                        // Esperar hasta que el primer audio termine
                         clipScore.addLineListener(event -> {
                             if (event.getType() == LineEvent.Type.STOP) {
                                 try {
-                                    clipScore.close(); // Cerrar el clip para liberar recursos
+                                    clipScore.close();
 
-                                    // Iniciar el segundo audio
                                     Clip clipTotal = AudioSystem.getClip();
                                     clipTotal.open(audioInputTotalStream);
                                     clipTotal.start();
@@ -422,7 +420,7 @@ public class Arduino {
 
     public void playFinalOptionAudio(String fileName) {
         try {
-            URL soundURL = getClass().getResource("../../audio/final_options/" + fileName + ".wav");
+            URL soundURL = getClass().getResource("/audio/final_options/" + fileName + ".wav");
 
             if (soundURL != null) {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
