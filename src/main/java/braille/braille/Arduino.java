@@ -35,8 +35,11 @@ public class Arduino {
     private int index = 0;
 
 //  CONSTANS ANSWERS
-    static final String FILE_NAME_ANNW_CORRECT = "correct";
-    static final String FILE_NAME_ANNW_INCORRECT = "incorrect";
+    static final String FILE_NAME_ANNW_CORRECT_IS = "correct_is";
+    static final String FILE_NAME_ANNW_CORRECT_NOT_IS = "correct_not_is";
+    static final String FILE_NAME_ANNW_INCORRECT_IS = "incorrect_is";
+    static final String FILE_NAME_ANNW_INCORRECT_NOT_IS = "incorrect_not_is";
+
     static final String FILE_NAME_END_OR_AGAIN = "end_or_again";
 
     static final String INPUT_CORRECT_VALUE = "1";
@@ -49,7 +52,7 @@ public class Arduino {
     public String getCharacterText() {
         return this.characterText;
     }
-    
+
     public SerialPort getSerialPort() {
         return this.serialPort;
     }
@@ -123,6 +126,7 @@ public class Arduino {
 
 //    SETEO DE PROPIEDADES
     public void initProperties(String exercise, String character, int level) {
+        System.out.println("Difultad: " + level);
         setExercise(exercise);
         setListText(character); //ASIGNANDO TEXTO
         setListyShuffleText(level); //BARAJEANDO TEXTO
@@ -182,19 +186,23 @@ public class Arduino {
     }
 
     public void setAnswer(String data) {
-        boolean correctAnswer = false;
         Integer intAnswer = Integer.parseInt(data);
         String fileName = "";
 
-        if (this.listText.get(this.index).equals(this.listShuffleText.get(this.index))) {
-            correctAnswer = true;
+        if (intAnswer.equals(this.listSolution.get(this.index))) {
+            if (this.listText.get(this.index).equals(this.listShuffleText.get(this.index))) {
+                fileName = FILE_NAME_ANNW_CORRECT_IS;
+            } else {
+                fileName = FILE_NAME_ANNW_CORRECT_NOT_IS;
+            }
+        } else {
+            if (this.listText.get(this.index).equals(this.listShuffleText.get(this.index))) {
+                fileName = FILE_NAME_ANNW_INCORRECT_IS;
+            } else {
+                fileName = FILE_NAME_ANNW_INCORRECT_NOT_IS;
+            }
         }
 
-        if (correctAnswer && (intAnswer == 1)) {
-            fileName = this.FILE_NAME_ANNW_CORRECT;
-        } else {
-            fileName = this.FILE_NAME_ANNW_INCORRECT;
-        }
         playAnswStatusAudio(fileName);
 
         this.listAnswers.add(intAnswer);
@@ -301,21 +309,34 @@ public class Arduino {
     // REPRODUCIOR SONIDO ESTADO RESPUESTA
     public void playAnswStatusAudio(String fileName) {
         try {
-            URL soundURL = getClass().getResource("../../audio/answers/" + fileName + ".wav");
+            URL soundAswURL = getClass().getResource("../../audio/answers/" + fileName + ".wav");
+            URL sountCharURL = searchCharacterSound(this.listText.get(this.index));
 
-            if (soundURL != null) {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
-                if (audioInputStream != null) {
-                    Clip clip = AudioSystem.getClip();
-                    clip.open(audioInputStream);
-                    clip.start();
+            if (soundAswURL != null && sountCharURL != null) {
+                AudioInputStream audioInputAswStream = AudioSystem.getAudioInputStream(soundAswURL);
+                AudioInputStream audioInputCharStream = AudioSystem.getAudioInputStream(sountCharURL);
+                if (audioInputAswStream != null && audioInputCharStream != null) {
+                    try {
+                        Clip clipScore = AudioSystem.getClip();
+                        clipScore.open(audioInputAswStream);
+                        clipScore.start();
 
-                    if (fileName == "end" || fileName == "again") {
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        clipScore.addLineListener(eventAsw -> {
+                            if (eventAsw.getType() == LineEvent.Type.STOP) {
+                                try {
+                                    clipScore.close();
+
+                                    Clip clipTotal = AudioSystem.getClip();
+                                    clipTotal.open(audioInputCharStream);
+                                    clipTotal.start();
+                                } catch (IOException | LineUnavailableException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
+                    } catch (LineUnavailableException e) {
+                        e.printStackTrace();
                     }
                 } else {
                     System.err.println("No se pudo obtener el AudioInputStream de la respuesta.");
@@ -324,7 +345,7 @@ public class Arduino {
                 System.err.println("No se pudo encontrar el archivo de la respuesta.");
             }
 
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -395,6 +416,35 @@ public class Arduino {
             }
 
         } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playFinalOptionAudio(String fileName) {
+        try {
+            URL soundURL = getClass().getResource("../../audio/final_options/" + fileName + ".wav");
+
+            if (soundURL != null) {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundURL);
+                if (audioInputStream != null) {
+                    Clip clip = AudioSystem.getClip();
+                    clip.open(audioInputStream);
+                    clip.start();
+
+                    try {
+                        clearLists();
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.err.println("No se pudo obtener el AudioInputStream de la letra/número.");
+                }
+            } else {
+                System.err.println("No se pudo encontrar el archivo de sonido de la letra/número.");
+            }
+
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
     }
