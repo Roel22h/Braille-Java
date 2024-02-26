@@ -93,9 +93,8 @@ public class Form extends javax.swing.JFrame {
                         // Procesar los datos recibidos
                         if (bytesRead > 0) {
                             String receivedData;
-                            receivedData = new String(buffer, 0, bytesRead);                            
-                            System.out.println("RECIBIDO " + receivedData);
-                            
+                            receivedData = new String(buffer, 0, bytesRead);
+
                             switch (receivedData) {
                                 case "1", "0" ->
                                     Form.this.arduino.setAnswer(receivedData);
@@ -216,12 +215,12 @@ public class Form extends javax.swing.JFrame {
 
     public String getCustomTxtSerialized(String customText) {
         int customTextLength = customText.length();
-        
-        if(customTextLength > 60){
+
+        if (customTextLength > 60) {
             JOptionPane.showMessageDialog(this, "El texto ingresado supera el límite de 30 caracteres como máximo.");
             return "";
         }
-        
+
         if (isValidFormat(customText)) {
             return customText.replaceAll(",", "");
         } else {
@@ -249,7 +248,10 @@ public class Form extends javax.swing.JFrame {
         DefaultTableModel jTable = (DefaultTableModel) jtResponse.getModel();
         jTable.setRowCount(0);
         for (int i = 0; i < arraysLength; i++) {
-            Object[] rowData = {listText.get(i), listShuffleText.get(i), listSolution.get(i), listAnswers.get(i)};
+            String solution = listSolution.get(i).equals(1) ? "Sí es" : "No es";
+            String answer = listAnswers.get(i).equals(1) ? "Sí es" : "No es";
+            
+            Object[] rowData = {listText.get(i), listShuffleText.get(i), solution, answer};
             jTable.addRow(rowData);
         }
 
@@ -525,32 +527,34 @@ public class Form extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lbExercises)
-                                .addGap(175, 175, 175)
-                                .addComponent(lbOptions)
-                                .addGap(158, 158, 158)
-                                .addComponent(lbParameters)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lbConnectionStatus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbResultTitle)
                                 .addGap(38, 38, 38)
                                 .addComponent(lbScore)
-                                .addGap(18, 18, 18))))
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbExercises))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lbOptions)
+                                        .addGap(115, 115, 115)
+                                        .addComponent(lbParameters)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 176, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbTitle)
-                .addGap(73, 73, 73))
+                .addGap(121, 121, 121))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -561,14 +565,11 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbExercises)
-                            .addComponent(lbParameters))
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(lbOptions)
-                        .addGap(18, 18, 18)))
+                    .addComponent(lbExercises)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbParameters)
+                        .addComponent(lbOptions)))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
