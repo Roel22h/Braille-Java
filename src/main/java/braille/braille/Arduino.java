@@ -314,26 +314,26 @@ public class Arduino {
 
             if (soundAswURL != null && sountCharURL != null) {
                 AudioInputStream audioInputAswStream = AudioSystem.getAudioInputStream(soundAswURL);
-                AudioInputStream audioInputCharStream = AudioSystem.getAudioInputStream(sountCharURL);
-                if (audioInputAswStream != null && audioInputCharStream != null) {
+                // AudioInputStream audioInputCharStream = AudioSystem.getAudioInputStream(sountCharURL);
+                if (audioInputAswStream != null) {
                     try {
                         Clip clipScore = AudioSystem.getClip();
                         clipScore.open(audioInputAswStream);
                         clipScore.start();
 
-                        clipScore.addLineListener(eventAsw -> {
-                            if (eventAsw.getType() == LineEvent.Type.STOP) {
-                                try {
-                                    clipScore.close();
-
-                                    Clip clipTotal = AudioSystem.getClip();
-                                    clipTotal.open(audioInputCharStream);
-                                    clipTotal.start();
-                                } catch (IOException | LineUnavailableException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
+//                        clipScore.addLineListener(eventAsw -> {
+//                            if (eventAsw.getType() == LineEvent.Type.STOP) {
+//                                try {
+//                                    clipScore.close();
+//
+//                                    Clip clipTotal = AudioSystem.getClip();
+//                                    clipTotal.open(audioInputCharStream);
+//                                    clipTotal.start();
+//                                } catch (IOException | LineUnavailableException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
 
                     } catch (LineUnavailableException e) {
                         e.printStackTrace();
