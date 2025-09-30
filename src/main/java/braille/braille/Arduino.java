@@ -276,9 +276,9 @@ public class Arduino {
                 exercisePath = "letters";
                 break;
 
-            case "Números":
-                exercisePath = "numbers";
-                break;
+//            case "Números":
+//                exercisePath = "numbers";
+//                break;
 
             case "Letras":
                 exercisePath = "letters";

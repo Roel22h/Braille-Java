@@ -63,7 +63,7 @@ public class Form extends javax.swing.JFrame {
         ButtonGroup group = new ButtonGroup();
         rbGroup = group;
 
-        rbGroup.add(rbNumbers);
+//        rbGroup.add(rbNumbers);
         rbGroup.add(rbVowels);
         rbGroup.add(rbLetters);
         rbGroup.add(rbCustomText);
@@ -139,7 +139,7 @@ public class Form extends javax.swing.JFrame {
     private void enableForm(boolean status) {
         rbAlphabet.setEnabled(status);
         rbVowels.setEnabled(status);
-        rbNumbers.setEnabled(status);
+//        rbNumbers.setEnabled(status);
         rbLetters.setEnabled(status);
         rbCustomText.setEnabled(status);
 
@@ -288,7 +288,6 @@ public class Form extends javax.swing.JFrame {
         cbRandomLevel = new javax.swing.JComboBox<>();
         pGame = new javax.swing.JPanel();
         rbVowels = new javax.swing.JRadioButton();
-        rbNumbers = new javax.swing.JRadioButton();
         rbLetters = new javax.swing.JRadioButton();
         rbAlphabet = new javax.swing.JRadioButton();
         rbCustomText = new javax.swing.JRadioButton();
@@ -323,7 +322,7 @@ public class Form extends javax.swing.JFrame {
         });
         spTable.setViewportView(jtResponse);
 
-        pGeneral.add(spTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 680, 150));
+        pGeneral.add(spTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 680, 230));
 
         lbConnectionStatus.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lbConnectionStatus.setForeground(new java.awt.Color(204, 0, 0));
@@ -420,12 +419,12 @@ public class Form extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbExerciseType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbRandomLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pParametersLayout.createSequentialGroup()
                         .addGroup(pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbExcerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 158, Short.MAX_VALUE))
-                    .addComponent(cbRandomLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pParametersLayout.setVerticalGroup(
@@ -434,14 +433,14 @@ public class Form extends javax.swing.JFrame {
                 .addComponent(lbExcerciseType)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbExerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(lbRandomLevel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        pGeneral.add(pParameters, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 310, 180));
+        pGeneral.add(pParameters, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 310, 200));
 
         pGame.setBackground(new java.awt.Color(255, 255, 255));
         pGame.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "GAME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -455,17 +454,6 @@ public class Form extends javax.swing.JFrame {
         rbVowels.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 rbVowelsMouseClicked(evt);
-            }
-        });
-
-        rbNumbers.setBackground(new java.awt.Color(255, 255, 255));
-        rbNumbers.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        rbNumbers.setForeground(new java.awt.Color(51, 51, 51));
-        rbNumbers.setText("Números");
-        rbNumbers.setEnabled(false);
-        rbNumbers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbNumbersMouseClicked(evt);
             }
         });
 
@@ -518,32 +506,29 @@ public class Form extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pGameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                     .addComponent(tfCustomText, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbAlphabet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rbLetters, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rbNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                     .addComponent(rbVowels, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pGameLayout.setVerticalGroup(
             pGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pGameLayout.createSequentialGroup()
-                .addComponent(rbVowels, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbLetters, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbAlphabet, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbVowels, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbLetters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbAlphabet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfCustomText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(93, 93, 93))
         );
 
-        pGeneral.add(pGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 310, 300));
+        pGeneral.add(pGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 310, 210));
 
         lbImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/form-image.jpg"))); // NOI18N
 
@@ -600,7 +585,7 @@ public class Form extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        pGeneral.add(pResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 310, 100));
+        pGeneral.add(pResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 310, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -673,12 +658,6 @@ public class Form extends javax.swing.JFrame {
         setTxtOutput(this.letersExercise);
     }//GEN-LAST:event_rbLettersMouseClicked
 
-    private void rbNumbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbNumbersMouseClicked
-        // TODO add your handling code here:
-        tfCustomText.setEnabled(false);
-        setTxtOutput(this.numbresExercise);
-    }//GEN-LAST:event_rbNumbersMouseClicked
-
     private void rbVowelsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbVowelsMouseClicked
         // TODO add your handling code here:
         tfCustomText.setEnabled(false);
@@ -750,7 +729,6 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbAlphabet;
     private javax.swing.JRadioButton rbCustomText;
     private javax.swing.JRadioButton rbLetters;
-    private javax.swing.JRadioButton rbNumbers;
     private javax.swing.JRadioButton rbVowels;
     private javax.swing.JScrollPane spTable;
     private javax.swing.JTextField tfCustomText;
