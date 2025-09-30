@@ -271,307 +271,40 @@ public class Form extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pGeneral = new javax.swing.JPanel();
+        spTable = new javax.swing.JScrollPane();
+        jtResponse = new javax.swing.JTable();
+        lbConnectionStatus = new javax.swing.JLabel();
+        lbResultTitle = new javax.swing.JLabel();
+        lbScore = new javax.swing.JLabel();
         lbTitle = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        lbExercises = new javax.swing.JLabel();
-        lbParameters = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        pStudent = new javax.swing.JPanel();
+        lbStudent = new javax.swing.JLabel();
+        tfStudent = new javax.swing.JTextField();
+        pParameters = new javax.swing.JPanel();
+        lbExcerciseType = new javax.swing.JLabel();
+        cbExerciseType = new javax.swing.JComboBox<>();
+        lbRandomLevel = new javax.swing.JLabel();
+        cbRandomLevel = new javax.swing.JComboBox<>();
+        pGame = new javax.swing.JPanel();
         rbVowels = new javax.swing.JRadioButton();
         rbNumbers = new javax.swing.JRadioButton();
         rbLetters = new javax.swing.JRadioButton();
         rbAlphabet = new javax.swing.JRadioButton();
         rbCustomText = new javax.swing.JRadioButton();
         tfCustomText = new javax.swing.JTextField();
-        imgBocina = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        tfStudent = new javax.swing.JTextField();
-        lbStudent = new javax.swing.JLabel();
-        btnStart = new javax.swing.JToggleButton();
-        jPanel4 = new javax.swing.JPanel();
-        lbExcerciseType = new javax.swing.JLabel();
-        cbExerciseType = new javax.swing.JComboBox<>();
-        lbRandomLevel = new javax.swing.JLabel();
-        cbRandomLevel = new javax.swing.JComboBox<>();
-        imgBraille = new javax.swing.JLabel();
+        pImage = new javax.swing.JPanel();
+        lbImage = new javax.swing.JLabel();
+        pResult = new javax.swing.JPanel();
         tfRandom = new javax.swing.JTextField();
-        lbOptions = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtResponse = new javax.swing.JTable();
-        lbResultTitle = new javax.swing.JLabel();
-        lbScore = new javax.swing.JLabel();
-        lbConnectionStatus = new javax.swing.JLabel();
+        btnStart = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lbTitle.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        lbTitle.setText("JUGANDO CON EL ALFABETO BRAILLE");
+        pGeneral.setBackground(new java.awt.Color(250, 250, 250));
+        pGeneral.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbExercises.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbExercises.setText("Ejercicios");
-
-        lbParameters.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbParameters.setText("Parametros");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        rbVowels.setSelected(true);
-        rbVowels.setText("Vocales");
-        rbVowels.setEnabled(false);
-        rbVowels.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbVowelsMouseClicked(evt);
-            }
-        });
-
-        rbNumbers.setText("Números");
-        rbNumbers.setEnabled(false);
-        rbNumbers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbNumbersMouseClicked(evt);
-            }
-        });
-
-        rbLetters.setText("Letras");
-        rbLetters.setEnabled(false);
-        rbLetters.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbLettersMouseClicked(evt);
-            }
-        });
-
-        rbAlphabet.setText("Alfabeto");
-        rbAlphabet.setEnabled(false);
-        rbAlphabet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbAlphabetMouseClicked(evt);
-            }
-        });
-
-        rbCustomText.setText("Personalizado");
-        rbCustomText.setEnabled(false);
-        rbCustomText.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbCustomTextMouseClicked(evt);
-            }
-        });
-
-        tfCustomText.setText("a,e,i,o,u");
-        tfCustomText.setEnabled(false);
-
-        imgBocina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/speaker.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbVowels)
-                            .addComponent(rbNumbers)
-                            .addComponent(rbLetters))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(imgBocina)
-                        .addGap(51, 51, 51))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbAlphabet)
-                            .addComponent(rbCustomText)
-                            .addComponent(tfCustomText, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 15, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rbVowels)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbNumbers)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbLetters))
-                    .addComponent(imgBocina))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbAlphabet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbCustomText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfCustomText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        tfStudent.setEnabled(false);
-
-        lbStudent.setText("Estudiante");
-
-        btnStart.setText("Empezar juego");
-        btnStart.setEnabled(false);
-        btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnStartMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbStudent)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 73, Short.MAX_VALUE)
-                        .addComponent(btnStart))
-                    .addComponent(tfStudent))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbStudent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addComponent(btnStart)
-                .addContainerGap())
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lbExcerciseType.setText("Tipo de ejercico");
-
-        cbExerciseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Secuencial", "Aleatorio" }));
-        cbExerciseType.setEnabled(false);
-        cbExerciseType.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbExerciseTypeItemStateChanged(evt);
-            }
-        });
-
-        lbRandomLevel.setText("Nivel de aleatoriedad");
-
-        cbRandomLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Muy baja", "Baja", "Media", "Alta", "Muy alta" }));
-        cbRandomLevel.setEnabled(false);
-        cbRandomLevel.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbRandomLevelItemStateChanged(evt);
-            }
-        });
-
-        imgBraille.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/prot.jpeg"))); // NOI18N
-
-        tfRandom.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfRandom)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbExcerciseType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbRandomLevel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cbExerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 14, Short.MAX_VALUE)))
-                                .addGap(43, 43, 43)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(imgBraille)))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imgBraille)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lbExcerciseType)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbExerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbRandomLevel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tfRandom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
-        );
-
-        lbOptions.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbOptions.setText("Opciones");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(lbTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 984, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbExercises)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbOptions)
-                                .addGap(134, 134, 134))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbParameters))
-                        .addGap(149, 149, 149))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbExercises)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbOptions)
-                        .addComponent(lbParameters)))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
+        jtResponse.setBackground(new java.awt.Color(255, 255, 255));
         jtResponse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -588,52 +321,296 @@ public class Form extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jtResponse);
+        spTable.setViewportView(jtResponse);
 
-        jScrollPane1.setViewportView(jScrollPane2);
+        pGeneral.add(spTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 680, 150));
 
-        lbResultTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lbResultTitle.setText("Resultado");
-
-        lbScore.setText("0/0");
-
+        lbConnectionStatus.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         lbConnectionStatus.setForeground(new java.awt.Color(204, 0, 0));
         lbConnectionStatus.setText("DESCONECTADO");
+        pGeneral.add(lbConnectionStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, -1, -1));
+
+        lbResultTitle.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        lbResultTitle.setForeground(new java.awt.Color(51, 51, 51));
+        lbResultTitle.setText("Resultado");
+        pGeneral.add(lbResultTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 670, -1, -1));
+
+        lbScore.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        lbScore.setForeground(new java.awt.Color(51, 51, 51));
+        lbScore.setText("0/0");
+        pGeneral.add(lbScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 670, -1, -1));
+
+        lbTitle.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbTitle.setForeground(new java.awt.Color(51, 51, 51));
+        lbTitle.setText("APU BRAILLE GAME");
+        pGeneral.add(lbTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        pStudent.setBackground(new java.awt.Color(255, 255, 255));
+        pStudent.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "STUDENT", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
+
+        lbStudent.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbStudent.setForeground(new java.awt.Color(51, 51, 51));
+        lbStudent.setText("Name");
+
+        tfStudent.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tfStudent.setEnabled(false);
+
+        javax.swing.GroupLayout pStudentLayout = new javax.swing.GroupLayout(pStudent);
+        pStudent.setLayout(pStudentLayout);
+        pStudentLayout.setHorizontalGroup(
+            pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pStudentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pStudentLayout.createSequentialGroup()
+                        .addComponent(lbStudent)
+                        .addGap(0, 251, Short.MAX_VALUE))
+                    .addComponent(tfStudent))
+                .addContainerGap())
+        );
+        pStudentLayout.setVerticalGroup(
+            pStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pStudentLayout.createSequentialGroup()
+                .addComponent(lbStudent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
+        );
+
+        pGeneral.add(pStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 310, 100));
+
+        pParameters.setBackground(new java.awt.Color(255, 255, 255));
+        pParameters.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PARAMETERS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(51, 51, 51))); // NOI18N
+
+        lbExcerciseType.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbExcerciseType.setForeground(new java.awt.Color(51, 51, 51));
+        lbExcerciseType.setText("Tipo de ejercico");
+
+        cbExerciseType.setBackground(new java.awt.Color(255, 255, 255));
+        cbExerciseType.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cbExerciseType.setForeground(new java.awt.Color(51, 51, 51));
+        cbExerciseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Secuencial", "Aleatorio" }));
+        cbExerciseType.setEnabled(false);
+        cbExerciseType.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbExerciseTypeItemStateChanged(evt);
+            }
+        });
+
+        lbRandomLevel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lbRandomLevel.setForeground(new java.awt.Color(51, 51, 51));
+        lbRandomLevel.setText("Nivel de aleatoriedad");
+
+        cbRandomLevel.setBackground(new java.awt.Color(255, 255, 255));
+        cbRandomLevel.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cbRandomLevel.setForeground(new java.awt.Color(51, 51, 51));
+        cbRandomLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Muy baja", "Baja", "Media", "Alta", "Muy alta" }));
+        cbRandomLevel.setEnabled(false);
+        cbRandomLevel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbRandomLevelItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pParametersLayout = new javax.swing.GroupLayout(pParameters);
+        pParameters.setLayout(pParametersLayout);
+        pParametersLayout.setHorizontalGroup(
+            pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pParametersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbExerciseType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pParametersLayout.createSequentialGroup()
+                        .addGroup(pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbExcerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 158, Short.MAX_VALUE))
+                    .addComponent(cbRandomLevel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pParametersLayout.setVerticalGroup(
+            pParametersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pParametersLayout.createSequentialGroup()
+                .addComponent(lbExcerciseType)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbExerciseType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbRandomLevel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbRandomLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        pGeneral.add(pParameters, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 310, 180));
+
+        pGame.setBackground(new java.awt.Color(255, 255, 255));
+        pGame.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "GAME", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        rbVowels.setBackground(new java.awt.Color(255, 255, 255));
+        rbVowels.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        rbVowels.setForeground(new java.awt.Color(51, 51, 51));
+        rbVowels.setSelected(true);
+        rbVowels.setText("Vocales");
+        rbVowels.setEnabled(false);
+        rbVowels.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbVowelsMouseClicked(evt);
+            }
+        });
+
+        rbNumbers.setBackground(new java.awt.Color(255, 255, 255));
+        rbNumbers.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        rbNumbers.setForeground(new java.awt.Color(51, 51, 51));
+        rbNumbers.setText("Números");
+        rbNumbers.setEnabled(false);
+        rbNumbers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbNumbersMouseClicked(evt);
+            }
+        });
+
+        rbLetters.setBackground(new java.awt.Color(255, 255, 255));
+        rbLetters.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        rbLetters.setForeground(new java.awt.Color(51, 51, 51));
+        rbLetters.setText("Letras");
+        rbLetters.setEnabled(false);
+        rbLetters.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbLettersMouseClicked(evt);
+            }
+        });
+
+        rbAlphabet.setBackground(new java.awt.Color(255, 255, 255));
+        rbAlphabet.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        rbAlphabet.setForeground(new java.awt.Color(51, 51, 51));
+        rbAlphabet.setText("Alfabeto");
+        rbAlphabet.setEnabled(false);
+        rbAlphabet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAlphabetMouseClicked(evt);
+            }
+        });
+
+        rbCustomText.setBackground(new java.awt.Color(255, 255, 255));
+        rbCustomText.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        rbCustomText.setForeground(new java.awt.Color(51, 51, 51));
+        rbCustomText.setText("Personalizado");
+        rbCustomText.setEnabled(false);
+        rbCustomText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbCustomTextMouseClicked(evt);
+            }
+        });
+        rbCustomText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCustomTextActionPerformed(evt);
+            }
+        });
+
+        tfCustomText.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tfCustomText.setText("a,e,i,o,u");
+        tfCustomText.setEnabled(false);
+
+        javax.swing.GroupLayout pGameLayout = new javax.swing.GroupLayout(pGame);
+        pGame.setLayout(pGameLayout);
+        pGameLayout.setHorizontalGroup(
+            pGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pGameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfCustomText, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbAlphabet, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbLetters, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                    .addComponent(rbVowels, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pGameLayout.setVerticalGroup(
+            pGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pGameLayout.createSequentialGroup()
+                .addComponent(rbVowels, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbLetters, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbAlphabet, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbCustomText, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfCustomText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
+        pGeneral.add(pGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 310, 300));
+
+        lbImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/form-image.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout pImageLayout = new javax.swing.GroupLayout(pImage);
+        pImage.setLayout(pImageLayout);
+        pImageLayout.setHorizontalGroup(
+            pImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pImageLayout.setVerticalGroup(
+            pImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pImageLayout.createSequentialGroup()
+                .addComponent(lbImage, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pGeneral.add(pImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 500, 700));
+
+        pResult.setBackground(new java.awt.Color(255, 255, 255));
+        pResult.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        tfRandom.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        tfRandom.setEnabled(false);
+
+        btnStart.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnStart.setText("Empezar juego");
+        btnStart.setEnabled(false);
+        btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnStartMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pResultLayout = new javax.swing.GroupLayout(pResult);
+        pResult.setLayout(pResultLayout);
+        pResultLayout.setHorizontalGroup(
+            pResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pResultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfRandom)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pResultLayout.createSequentialGroup()
+                        .addGap(0, 192, Short.MAX_VALUE)
+                        .addComponent(btnStart)))
+                .addContainerGap())
+        );
+        pResultLayout.setVerticalGroup(
+            pResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pResultLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(tfRandom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnStart)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
+        pGeneral.add(pResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 310, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbConnectionStatus)
-                        .addGap(743, 743, 743)
-                        .addComponent(lbResultTitle)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbScore)
-                        .addGap(0, 91, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(pGeneral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lbResultTitle)
-                        .addComponent(lbScore))
-                    .addComponent(lbConnectionStatus))
-                .addGap(19, 19, 19))
+            .addComponent(pGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -644,23 +621,45 @@ public class Form extends javax.swing.JFrame {
         startTest();
     }//GEN-LAST:event_btnStartMouseClicked
 
-    private void rbVowelsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbVowelsMouseClicked
+    private void cbRandomLevelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbRandomLevelItemStateChanged
         // TODO add your handling code here:
-        tfCustomText.setEnabled(false);
-        setTxtOutput(this.vowelsExercise);
-    }//GEN-LAST:event_rbVowelsMouseClicked
+        String randomLevel = (String) cbRandomLevel.getSelectedItem();
 
-    private void rbNumbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbNumbersMouseClicked
-        // TODO add your handling code here:
-        tfCustomText.setEnabled(false);
-        setTxtOutput(this.numbresExercise);
-    }//GEN-LAST:event_rbNumbersMouseClicked
+        switch (randomLevel) {
+            case "Muy baja":
+            this.randomLevel = 1;
+            break;
+            case "Baja":
+            this.randomLevel = 3;
+            break;
+            case "Media":
+            this.randomLevel = 5;
+            break;
+            case "Alta":
+            this.randomLevel = 7;
+            break;
+            case "Muy alta":
+            this.randomLevel = 10;
+            break;
+            default:
+            throw new AssertionError();
+        }
+    }//GEN-LAST:event_cbRandomLevelItemStateChanged
 
-    private void rbLettersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbLettersMouseClicked
+    private void cbExerciseTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbExerciseTypeItemStateChanged
         // TODO add your handling code here:
-        tfCustomText.setEnabled(false);
-        setTxtOutput(this.letersExercise);
-    }//GEN-LAST:event_rbLettersMouseClicked
+        setRandomLevelStatus();
+    }//GEN-LAST:event_cbExerciseTypeItemStateChanged
+
+    private void rbCustomTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCustomTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbCustomTextActionPerformed
+
+    private void rbCustomTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCustomTextMouseClicked
+        // TODO add your handling code here:
+        tfCustomText.setEnabled(true);
+        tfCustomText.setText("");
+    }//GEN-LAST:event_rbCustomTextMouseClicked
 
     private void rbAlphabetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAlphabetMouseClicked
         // TODO add your handling code here:
@@ -668,11 +667,23 @@ public class Form extends javax.swing.JFrame {
         setTxtOutput(this.alphabetExercise);
     }//GEN-LAST:event_rbAlphabetMouseClicked
 
-    private void rbCustomTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCustomTextMouseClicked
+    private void rbLettersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbLettersMouseClicked
         // TODO add your handling code here:
-        tfCustomText.setEnabled(true);
-        tfCustomText.setText("");
-    }//GEN-LAST:event_rbCustomTextMouseClicked
+        tfCustomText.setEnabled(false);
+        setTxtOutput(this.letersExercise);
+    }//GEN-LAST:event_rbLettersMouseClicked
+
+    private void rbNumbersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbNumbersMouseClicked
+        // TODO add your handling code here:
+        tfCustomText.setEnabled(false);
+        setTxtOutput(this.numbresExercise);
+    }//GEN-LAST:event_rbNumbersMouseClicked
+
+    private void rbVowelsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbVowelsMouseClicked
+        // TODO add your handling code here:
+        tfCustomText.setEnabled(false);
+        setTxtOutput(this.vowelsExercise);
+    }//GEN-LAST:event_rbVowelsMouseClicked
 
     private void setRandomLevelStatus() {
         if ((String) cbExerciseType.getSelectedItem() == "Secuencial") {
@@ -683,36 +694,6 @@ public class Form extends javax.swing.JFrame {
             cbRandomLevel.setEnabled(true);
         }
     }
-
-    private void cbExerciseTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbExerciseTypeItemStateChanged
-        // TODO add your handling code here:
-        setRandomLevelStatus();
-    }//GEN-LAST:event_cbExerciseTypeItemStateChanged
-
-    private void cbRandomLevelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbRandomLevelItemStateChanged
-        // TODO add your handling code here:
-        String randomLevel = (String) cbRandomLevel.getSelectedItem();
-
-        switch (randomLevel) {
-            case "Muy baja":
-                this.randomLevel = 1;
-                break;
-            case "Baja":
-                this.randomLevel = 3;
-                break;
-            case "Media":
-                this.randomLevel = 5;
-                break;
-            case "Alta":
-                this.randomLevel = 7;
-                break;
-            case "Muy alta":
-                this.randomLevel = 10;
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }//GEN-LAST:event_cbRandomLevelItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -751,31 +732,27 @@ public class Form extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnStart;
     private javax.swing.JComboBox<String> cbExerciseType;
     private javax.swing.JComboBox<String> cbRandomLevel;
-    private javax.swing.JLabel imgBocina;
-    private javax.swing.JLabel imgBraille;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jtResponse;
     private javax.swing.JLabel lbConnectionStatus;
     private javax.swing.JLabel lbExcerciseType;
-    private javax.swing.JLabel lbExercises;
-    private javax.swing.JLabel lbOptions;
-    private javax.swing.JLabel lbParameters;
+    private javax.swing.JLabel lbImage;
     private javax.swing.JLabel lbRandomLevel;
     private javax.swing.JLabel lbResultTitle;
     private javax.swing.JLabel lbScore;
     private javax.swing.JLabel lbStudent;
     private javax.swing.JLabel lbTitle;
+    private javax.swing.JPanel pGame;
+    private javax.swing.JPanel pGeneral;
+    private javax.swing.JPanel pImage;
+    private javax.swing.JPanel pParameters;
+    private javax.swing.JPanel pResult;
+    private javax.swing.JPanel pStudent;
     private javax.swing.JRadioButton rbAlphabet;
     private javax.swing.JRadioButton rbCustomText;
     private javax.swing.JRadioButton rbLetters;
     private javax.swing.JRadioButton rbNumbers;
     private javax.swing.JRadioButton rbVowels;
+    private javax.swing.JScrollPane spTable;
     private javax.swing.JTextField tfCustomText;
     private javax.swing.JTextField tfRandom;
     private javax.swing.JTextField tfStudent;
